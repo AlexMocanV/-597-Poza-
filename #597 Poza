@@ -1,0 +1,64 @@
+#include <iostream>
+
+using namespace std;
+
+long long n,m,i,j,minii=1000,maxii=0,minij=1000,maxij=0,ok=0;
+
+bool v[102][102];
+
+int main()
+{
+    
+    cin>>n>>m;
+    for(i=1;i<=n;i++)
+    {
+        for(j=1;j<=m;j++)
+        {
+            cin>>v[i][j];
+        }
+    }
+    for(i=1;i<=n;i++)
+    {
+        bool ok=0;
+        for(j=1;j<=m;j++)
+        {
+            if(v[i][j]==1)
+            {
+                ok=1;
+                break;
+            }
+        }
+        if(ok==1)
+        {
+            maxii=max(maxii,i);
+            minii=min(minii,i);
+        }
+    }
+    for(j=1;j<=m;j++)
+    {
+        bool ok=0;
+        for(i=1;i<=n;i++)
+        {
+            if(v[i][j]==1)
+            {
+                ok=1;
+                break;
+            }
+        }
+        if(ok==1)
+        {
+            maxij=max(maxij,j);
+            minij=min(minij,j);
+        }
+    }
+    cout<<(maxii-minii)+1<<" "<<(maxij-minij)+1<<"\n";
+    for(i=minii;i<=maxii;i++)
+    {
+        for(j=minij;j<=maxij;j++)
+        {
+            cout<<v[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+    return 0;
+}
